@@ -3,6 +3,12 @@ package reflection;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
+import charactor.ADHero;
+import charactor.APHero;
+import charactor.Hero;
 
 /**
  * 首先根据这个配置文件，使用反射实例化出两个英雄出来。
@@ -11,11 +17,10 @@ import java.io.FileReader;
  */
 public class GetMethod {
 	public static void main(String[] args) {
-		File f = new File("/hero.conf");
+		File f = new File("D:/javaee_workspace2/src/reflection/hero.conf");
 		try {
 			FileReader fr = new FileReader(f);
-			BufferedReader br = new BufferedReader(fr);
-			
+			BufferedReader br = new BufferedReader(fr);		
 			String className1,className2;
 			String heroName1,heroName2;
 			String[] s = new String[4];
@@ -23,7 +28,8 @@ public class GetMethod {
 			int i =0;
 			while( (line = br.readLine())!=null)
 			{
-				System.out.println(line);
+				s[i] = line;
+				i++;
 			}
 			className1 = s[0];
 			heroName1 = s[1];
@@ -31,7 +37,20 @@ public class GetMethod {
 			heroName2 =s[3];
 			br.close();
 			fr.close();
+			Class c1 = Class.forName(className1);
+			Constructor constructor1 = c1.getConstructor();
+			APHero h1 = (APHero)constructor1.newInstance();
+			h1.setName("gareen");
 			
+		   Class c2 = Class.forName(className2);
+		   Constructor constructor2 = c2.getConstructor();
+		   ADHero h2 = (ADHero)constructor2.newInstance();
+		   h2.setName("teemo");
+			
+		   
+		     Method m1 = c1.getMethod("attackHero", Hero.class);
+		     m1.invoke(h1, h2);
+		   
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
