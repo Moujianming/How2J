@@ -2,8 +2,12 @@ package charactor;
 
 public class Hero {
 
-	private String  name;
-	float hp;	
-	
+	public String  name;
+	public float hp;	
+	/*static String copyRight = "moujianming";
+	 static
+	{
+		System.out.println(copyRight);
+	}*/
 	
 }

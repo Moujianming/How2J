@@ -17,8 +17,8 @@ public class TestReflection {
 			Class class2 = new Hero().getClass();
 			Class class3 = Hero.class;
 			
-			System.out.println(class1);
-		} catch (ClassNotFoundException e) {
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
