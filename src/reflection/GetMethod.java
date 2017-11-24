@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import charactor.ADHero;
@@ -39,13 +40,19 @@ public class GetMethod {
 			fr.close();
 			Class c1 = Class.forName(className1);
 			Constructor constructor1 = c1.getConstructor();
-			APHero h1 = (APHero)constructor1.newInstance();
-			h1.setName("gareen");
-			
+			/*APHero h1 = (APHero)constructor1.newInstance();
+			h1.setName("gareen");*/
+			Object h1 = constructor1.newInstance();
+		    Field f1 = c1.getField("name");
+		    f1.set(h1, heroName1);
+		    
 		   Class c2 = Class.forName(className2);
 		   Constructor constructor2 = c2.getConstructor();
-		   ADHero h2 = (ADHero)constructor2.newInstance();
-		   h2.setName("teemo");
+		   Object h2 = constructor2.newInstance();
+		   Field f2 = c2.getField("name");
+		   f2.set(h2, heroName2);
+		  /* ADHero h2 = (ADHero)constructor2.newInstance();
+		   h2.setName("teemo");*/
 			
 		   
 		     Method m1 = c1.getMethod("attackHero", Hero.class);
