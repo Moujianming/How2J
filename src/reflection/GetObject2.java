@@ -26,8 +26,9 @@ public class GetObject2 {
 		   Class class1 = Class.forName(className);
 		   Constructor constructor = class1.getConstructor();
 		   ADHero h = (ADHero)constructor.newInstance();
-		   h.phicAttack();
-		
+		   h.physicAttack();
+		  fr.close();
+		  
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
